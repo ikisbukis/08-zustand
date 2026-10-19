@@ -7,7 +7,7 @@ interface NoteDetailsProps {
     params: Promise<{id:string}>
 }
 
-export async function generateMetadataDetailNote ({params} : NoteDetailsProps): Promise<Metadata> {
+export async function generateMetadata({params} : NoteDetailsProps): Promise<Metadata> {
     const { id } = await params
     const note = await fetchNoteById(id)
     return {
@@ -16,7 +16,7 @@ export async function generateMetadataDetailNote ({params} : NoteDetailsProps): 
         openGraph:{
             title: `${note.title}`,
             description: `${note.content}`,
-            url: "https://notehub.com/",
+            url: `https://notehub-public.goit.study/api/notes/${note.id}`,
             images: [{
                 url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
                 width: 1260,

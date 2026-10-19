@@ -4,10 +4,10 @@ import NoteClient from "./Notes.client"
 import { Metadata } from "next"
 
 interface MetadataProps{
-    params: Promise<{slug: string}>
+    params: Promise<{slug: string[]}>
 }
 
-export async function generateMetadataNotes({params} : MetadataProps): Promise<Metadata> {
+export async function generateMetadata({params} : MetadataProps): Promise<Metadata> {
     const {slug} = await params;
     return {
         title: `Filter: ${slug}`,
@@ -15,7 +15,7 @@ export async function generateMetadataNotes({params} : MetadataProps): Promise<M
         openGraph:{
             title: `Filter: ${slug}`,
             description: `All notes with tag ${slug}`,
-            url: "https://notehub.com/",
+            url: `https://notehub-public.goit.study/api/notes/filter/${slug}`,
             images: [ {
                 url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
                 width: 1200,

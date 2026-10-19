@@ -3,15 +3,15 @@ import { create } from "zustand";
 import type { CreateNoteType } from "@/types/note";
 import { persist } from "zustand/middleware";
 
-export const initialDraft: Partial<CreateNoteType> = {
+export const initialDraft: CreateNoteType = {
   title: "",
   content: "",
   tag: "Todo",
 };
 
 interface FormDraft {
-  draft: Partial<CreateNoteType>;
-  setData: (postDraftData: Partial<CreateNoteType>) => void;
+  draft:  CreateNoteType;
+  setData: (postDraftData: CreateNoteType) => void;
   cleanData: () => void;
 }
 
