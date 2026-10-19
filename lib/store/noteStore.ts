@@ -11,7 +11,7 @@ export const initialDraft: CreateNoteType = {
 
 interface FormDraft {
   draft:  CreateNoteType;
-  setData: (postDraftData: CreateNoteType) => void;
+  setData: (postDraftData: Partial<CreateNoteType>) => void;
   cleanData: () => void;
 }
 

@@ -5,11 +5,7 @@ import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { createNote } from "../../lib/api";
 import { useFormDraft } from "@/lib/store/noteStore";
 import { useRouter } from "next/navigation";
-interface NoteFormValues{
-    title: string
-    content: string
-    tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping" ;
-}
+import { CreateNoteType } from "@/types/note";
 
 export const NoteForm = ( ) => {
     const router = useRouter();
@@ -33,7 +29,7 @@ export const NoteForm = ( ) => {
     const handleSubmit = (formData: FormData) => {
         const title = formData.get("title") as string ?? "";
         const content = formData.get("content") as string ?? "";
-        const tag = formData.get("tag") as NoteFormValues['tag'] ?? "Todo";
+        const tag = formData.get("tag") as CreateNoteType['tag'] ?? "Todo";
         mutationCreate.mutate({title, content, tag})
     }
 
@@ -58,7 +54,7 @@ export const NoteForm = ( ) => {
 
   <div className={css.formGroup}>
     <label htmlFor="tag">Tag</label>
-    <select  id="tag" name="tag" className={css.select} defaultValue={draft.tag ?? "Todo"} onChange={(e) => setData({tag: e.target.value as NoteFormValues['tag']})}>
+    <select  id="tag" name="tag" className={css.select} defaultValue={draft.tag ?? "Todo"} onChange={(e) => setData({tag: e.target.value as CreateNoteType['tag']})}>
       <option value="Todo">Todo</option>
       <option value="Work">Work</option>
       <option value="Personal">Personal</option>
